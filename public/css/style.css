@@ -1,0 +1,20 @@
+body {
+	background-color: blue;
+	color: white;
+	
+}
+
+.postBox { color: yellow; 
+	height: 80px; 
+	width: 400px; 
+	background-color : gray;
+}
+
+.postHeader {
+	border: 2px;
+	background-color: green;
+	height: 30px;
+	width: 400px;
+}
+
+.textEntryField {width: 400px;}
