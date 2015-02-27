@@ -1,54 +1,80 @@
-
 var blog = angular.module('blog', []);
 
-var submitComment = angular.module('submitExample', [])
-    .controller('ExampleController', ['$scope', function($scope) {
-      $scope.list = [];
-      $scope.text = 'hello';
-      $scope.submit = function() {
-        if ($scope.text) {
-          $scope.list.push(this.text);
-          $scope.text = '';
-        }
-      };
-    }]);
-
-
-blog.controller('recentPostsCtrl', function ($scope) {
+  blog.controller('recentPostsCtrl', function ($scope){
   
-  $scope.text = "";
-  $scope.title = "";
+  $scope.title;
+  $scope.text;
+  $scope.author;
+  $scope.posts = [];
 
-  $scope.posts = [
 
-    {'postTitle': 'Nexus S',
-     'postAuthor': 'Bill',
-     'postTime' :  '1/12/2015',
-     'postContent': 'I love phones.',
-     'orderProp' : '3'
- },
+function initialize (author){
+   return author;
+  };
 
- 	{'postTitle': 'Boeing 747',
-     'postAuthor': 'Jack',
-     'postTime' :  '1/14/2015',
-     'postContent': 'I love airplanes.',
-     'orderProp' : '1'
- },
+$scope.author = initialize("bill");
+ 
 
-  {'postTitle': 'Mustang',
-     'postAuthor': 'Jill',
-     'postTime' :  '1/10/2015',
-     'postContent' : 'I love cars.',
-     'orderProp' : '2'
- },
+  $scope.submit = function(){
+      var post = new Post($scope.title, $scope.text, $scope.author);
+      $scope.posts.push(post);
+      $scope.title = "";
+      $scope.text  = "";
+      $scope.author = "";
+    }; 
 
-  {'postTitle': 'Elephants',
-     'postAuthor': 'Mike',
-     'postTime' :  '1/18/2015',
-     'postContent' : 'I love animals.',
-     'orderProp' : '4'
- }, 
+function Post(title, text, author){
+  this.postTitle= title;
+  this.postText=text;
+  this.postAuthor=author;
+  this.postTimeStamp=new Date();
+ };
 
-  ];
+
+ 
+
+
+// var userSubmission = 
+//     {'postTitle': $scope.title,
+//      'postAuthor': '',
+//      'postTime' :  '',
+//      'postContent': $scope.text,
+//      'orderProp' : '',
+//      'userID': ''}
+
+
+  // $scope.posts = [
+
+  //   {'postTitle': 'Nexus S',
+  //    'postAuthor': 'Bill',
+  //    'postTime' :  '1/12/2015',
+  //    'postContent': 'I love phones.',
+  //    'orderProp' : '3'
+  //   },
+
+ 	// {'postTitle': 'Boeing 747',
+  //    'postAuthor': 'Jack',
+  //    'postTime' :  '1/14/2015',
+  //    'postContent': 'I love airplanes.',
+  //    'orderProp' : '1'
+  // },
+
+  // {'postTitle': 'Mustang',
+  //    'postAuthor': 'Jill',
+  //    'postTime' :  '1/10/2015',
+  //    'postContent' : 'I love cars.',
+  //    'orderProp' : '2'
+  // },
+
+  // {'postTitle': 'Elephants',
+  //    'postAuthor': 'Mike',
+  //    'postTime' :  '1/18/2015',
+  //    'postContent' : 'I love animals.',
+  //    'orderProp' : '4'
+  // }, 
+
+  // ];
+
+
 });
 
